@@ -1,0 +1,11 @@
+srps_santa_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: SRPSSantaBundle:Default:index }
+    
+srps_santa_admin:
+    pattern: /admin/index
+    defaults: { _controller: SRPSSantaBundle:Admin:index }
+    
+srps_santa_times:
+    pattern: /admin/times
+    defaults: { _controller: SRPSSantaBundle:Admin:times }
