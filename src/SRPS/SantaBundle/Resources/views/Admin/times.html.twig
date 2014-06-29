@@ -1,0 +1,36 @@
+{% extends 'SRPSSantaBundle::base.html.twig' %}
+
+{% block body %}
+    <h2>Train times</h2>
+    
+    {% if not times %}
+        <div class="alert alert-warning">No train times have been added - click button below</div>
+    {% else %}
+        {% set count=1 %}
+        <table class="table table-striped">
+            <tr>
+                <th>Service number</th>
+                <th>Service time</th>
+                <th>Actions</th>
+            </tr>
+        {% for time in times %} 
+            <tr>
+                <td class="lead">
+                    <b>{{ count }}</b>
+                </td>
+                <td class="lead">
+                    {{ time.time|date('H:i') }}
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('admin_times_edit', {'id': time.id}) }}">
+                        <i class="fa fa-gears"></i> Edit</a>
+                </td>
+            </tr>    
+            {% set count=count+1 %}
+        {% endfor %} 
+        </table>
+    {% endif %}
+    
+    <p><a class="btn btn-primary" href="{{ path('admin_times_edit', {'id': 0}) }}">
+        <i class="fa fa-plus-square"></i> New train time</a></p>
+{% endblock %}

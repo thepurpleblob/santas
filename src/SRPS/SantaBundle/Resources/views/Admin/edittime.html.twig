@@ -1,0 +1,14 @@
+{% extends 'SRPSSantaBundle::base.html.twig' %}
+
+{% block body %}
+    <h2>Edit train times</h2>
+
+    {{ form_start(form) }}
+        {{ form_row(form.time) }}
+    
+        {{ form_widget(form.save, { 'label': 'Save' }) }}
+        
+        {{ form_widget(form.cancel, {'attr': {'class': 'btn-warning'}}) }}
+    {{ form_end(form) }}
+
+{% endblock %}
