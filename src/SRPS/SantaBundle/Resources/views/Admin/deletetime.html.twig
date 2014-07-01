@@ -1,0 +1,18 @@
+{% extends 'SRPSSantaBundle::base.html.twig' %}
+
+{% block body %}
+    <h2>Delete time - Warning!!</h2>
+
+    <div class="alert alert-danger">
+        If you proceed you will delete this time slot AND any configuration data 
+        (e.g. limits) that are associated with it. Are you sure you want to do this?
+    </div>
+    
+    <div>
+        <a class="btn btn-danger" href="{{ path('admin_times_confirm', {'id': id}) }}">
+            <i class="fa fa-bomb"></i> Delete</a>
+        <a class="btn btn-warning" href="{{ path('admin_times') }}">
+            <i class="fa fa-times"></i> Cancel</a>        
+    </div>
+
+{% endblock %}

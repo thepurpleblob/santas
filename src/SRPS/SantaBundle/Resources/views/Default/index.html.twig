@@ -1,5 +1,12 @@
 {% extends 'SRPSSantaBundle::base.html.twig' %}
 
 {% block body %}
-    <h2>Hello {{ name }}!</h2>
+    <h2>Admin menu</h2>
+    
+    <div class="btn-group-vertical">
+        <a class="btn btn-primary" href="{{ path('admin_times') }}">
+            <i class="fa fa-clock-o"></i> Train times</a>
+        <a class="btn btn-primary" href="{{ path('admin_times') }}">
+            <i class="fa fa-clock-o"></i> Train times</a>
+    </div>
 {% endblock %}

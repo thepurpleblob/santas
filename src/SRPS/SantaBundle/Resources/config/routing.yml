@@ -13,3 +13,27 @@ admin_times:
 admin_times_edit:
     pattern: /admin/{id}/times
     defaults: { _controller: SRPSSantaBundle:Admin:edittimes }
+
+admin_times_delete:
+    pattern: /admin/{id}/delete/times
+    defaults: { _controller: SRPSSantaBundle:Admin:deletetimes }
+
+admin_times_confirm:
+    pattern: /admin/{id}/confirm/times
+    defaults: { _controller: SRPSSantaBundle:Admin:confirmtimes }
+
+admin_dates:
+    pattern: /admin/dates
+    defaults: { _controller: SRPSSantaBundle:Admin:dates }
+
+admin_dates_edit:
+    pattern: /admin/{id}/dates
+    defaults: { _controller: SRPSSantaBundle:Admin:editdates }
+
+admin_dates_delete:
+    pattern: /admin/{id}/delete/dates
+    defaults: { _controller: SRPSSantaBundle:Admin:deletedates }
+
+admin_dates_confirm:
+    pattern: /admin/{id}/confirm/dates
+    defaults: { _controller: SRPSSantaBundle:Admin:confirmdates }

@@ -9,11 +9,15 @@ use SRPS\SantaBundle\Entity\Traintime;
 
 class AdminController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('SRPSSantaBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('SRPSSantaBundle:Default:index.html.twig');
     }
     
+    /**
+     * Display list of times
+     * @return type
+     */
     public function timesAction() {
         
         // get doctrine
@@ -31,6 +35,12 @@ class AdminController extends Controller
         );
     }
     
+    /**
+     * Create/edit time instance
+     * @param int $id Traintime id (0 for new)
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     */
     public function edittimesAction($id, Request $request) {
         
         // Get doctrine
@@ -67,6 +77,57 @@ class AdminController extends Controller
                 'id' => $id,
             )
         );       
+    }
+    
+    /**
+     * Handle traintime delete - ask for confirmation
+     * @param int $id Traintime id
+     * @return type
+     */
+    public function deletetimesAction($id) {
+        return $this->render('SRPSSantaBundle:Admin:deletetime.html.twig',
+            array(
+                'id' => $id,
+            ));
+    }
+    
+    /**
+     * Handle traintime delete - complete delete
+     * @param int $id Traintime id
+     * @return type
+     * @throws type
+     */
+    public function confirmtimesAction($id) {
+        
+        // Get doctrine
+        $em = $this->getDoctrine()->getManager();   
+        
+        $time = $em->getRepository('SRPSSantaBundle:Traintime')->find($id);
+        if (!$time) {
+            throw $this->createNotFoundException('Time does not exist, id='.$id);
+        }
+        $em->remove($time);
+        $em->flush();
+        
+        // TODO - probably need to delete some limits and stuff here
+        
+        return $this->redirect($this->generateUrl('admin_times'));
+    }
+    
+    public function datesAction() {
+        
+        // get doctrine
+        $em = $this->getDoctrine()->getManager();
+        
+        // get list of train times
+        $dates = $em->getRepository('SRPSSantaBundle:Traindate')
+            ->findAllOrderedByDate();
+        
+        return $this->render('SRPSSantaBundle:Admin:dates.html.twig',
+            array(
+                'dates' => $dates,
+            )
+        );
     }
 }
 
